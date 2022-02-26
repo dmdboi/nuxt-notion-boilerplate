@@ -1,69 +1,26 @@
-# notion-boilerplate
+# nuxt-notion-boilerplate
 
-## Build Setup
+This is a boilerplate for deploying a Notion blog using Nuxt to Netlify. 
 
-```bash
-# install dependencies
-$ npm install
+## Notion Setup
+Create a new database in Notion with the following columns:
+- Name (Title property)
+- Slug (Text property)
+- Author (Text property)
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+Create a new integration by going to *Settings & Members* > *Integrations* > *Develop your own Integrations*
+You will need the Authorization Key to allow the Netlify functions to access your Notion database.
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+## Netlify Setup
+Go to Environment Variables in Netlify dashboard
+Add a new 'CLIENT_TOKEN' variable and set its value to the Authorization Key from the Notion Integration
+Add a new 'DATABASE_ID' and set its value to the ID of your database.
 
-# generate static project
-$ npm run generate
-```
+**To deploy, either:**
+- Connect the Netlify site to a Github repository for automatically deployments
+- Run ``npm run generate`` and ``netlify deploy`` using Netlify CLI
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
-
-## Special Directories
-
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
-
-### `assets`
-
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+**For more info**
+https://nuxtjs.org/deployments/netlify/
+https://www.better.dev/getting-started-with-the-notion-api
+https://developers.notion.com/
