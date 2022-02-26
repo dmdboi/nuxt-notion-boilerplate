@@ -22,6 +22,17 @@ export default {
     ]
   },
 
+  loading: {
+    color: 'red',
+    height: '5px'
+  },
+
+  loadingIndicator: {
+    name: 'circle',
+    color: '#3B8070',
+    background: 'white'
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
@@ -47,7 +58,10 @@ export default {
   build: {
   },
 
+  plugins: ['~/plugins/vue-notion-render.js'],
+
   axios: {
+    baseURL: '/api',
     progress: true
   }
 }

@@ -1,3 +1,5 @@
+const { Client } = require("@notionhq/client")
+
 exports.handler = async (event, context) => {
   try {
     const notion = new Client({
@@ -6,10 +8,6 @@ exports.handler = async (event, context) => {
 
     const myPage = await notion.databases.query({
       database_id: process.env.DATABASE_ID,
-    })
-
-    const myPage = await notion.databases.query({
-      database_id: databaseId,
       filter: {
         property: "Slug",
         text: {
@@ -25,6 +23,11 @@ exports.handler = async (event, context) => {
 
     return {
       statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "OPTIONS,GET"
+      },
       body: JSON.stringify({
         name: myPage.results[0].properties.Name.title[0]["plain_text"],
         content: pageContent

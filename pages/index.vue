@@ -41,7 +41,7 @@
             <div class="ml-3">
               <p class="text-sm font-medium text-gray-900">
                 <a href="#" class="hover:underline">
-                  {{ item.properties.Author.title[0]["plain_text"] }}
+                  {{ item.properties.Author.rich_text[0]["plain_text"] }}
                 </a>
               </p>
             </div>
@@ -58,11 +58,15 @@ export default {
   data: () => ({
     notionData: [],
   }),
-  mounted: {
-    async asyncData({ $axios }) {
-      const response = await $axios.$get("/api/getBlog");
-      this.notionData = response.data;
-    },
+  async mounted() {
+    try {
+      const response = await this.$axios.$get("/getBlog");
+      console.log(response);
+
+      this.notionData = response;
+    } catch (e) {
+      console.log(e);
+    }
   },
 };
 </script>

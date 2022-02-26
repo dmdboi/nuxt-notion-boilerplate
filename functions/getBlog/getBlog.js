@@ -1,8 +1,9 @@
-// Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method
+const { Client } = require("@notionhq/client")
+
 exports.handler = async (event, context) => {
   try {
     const notion = new Client({
-      auth: process.env.CLIENT_TOKEN, // Authorisation Token from Notion Integration
+      auth: process.env.CLIENT_TOKEN
     })
 
     const myPage = await notion.databases.query({
@@ -11,6 +12,11 @@ exports.handler = async (event, context) => {
 
     return {
       statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "OPTIONS,GET"
+      },
       body: JSON.stringify(myPage),
     }
   } catch (err) {
