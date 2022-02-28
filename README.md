@@ -20,7 +20,7 @@ Add a new 'DATABASE_ID' and set its value to the ID of your database.
 - Connect the Netlify site to a Github repository for automatically deployments  
 - Run ``npm run generate`` and ``netlify deploy`` using Netlify CLI  
 
-**For more info**
+**For more info**  
 https://nuxtjs.org/deployments/netlify/  
 https://www.better.dev/getting-started-with-the-notion-api  
 https://developers.notion.com/  

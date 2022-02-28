@@ -6,9 +6,26 @@ exports.handler = async (event, context) => {
       auth: process.env.CLIENT_TOKEN
     })
 
-    const myPage = await notion.databases.query({
+    const articles = await notion.databases.query({
       database_id: process.env.DATABASE_ID,
     })
+
+    const articlesArray = articles.results.map(i => {
+      const newArticle = {
+        id: i.id,
+        author: i.properties.Author.rich_text[0]["plain_text"],
+        created_at: i.created_time,
+        cover: i.cover['external'].url || i.cover['file'].url,
+        slug: i.properties.Slug.rich_text[0]["plain_text"],
+        title: i.properties.Name.title[0]["plain_text"],
+      }
+
+      return newArticle
+    })
+
+    const response = {
+      articles: articlesArray
+    }
 
     return {
       statusCode: 200,
@@ -17,7 +34,7 @@ exports.handler = async (event, context) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "OPTIONS,GET"
       },
-      body: JSON.stringify(myPage),
+      body: JSON.stringify(response),
     }
   } catch (err) {
     return { statusCode: 500, body: err.toString() }
